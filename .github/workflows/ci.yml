@@ -20,6 +20,7 @@ jobs:
 
       - name: Build
         run: npm run build
+        shell: bash
 
   lint:
     runs-on: ubuntu-latest
@@ -31,10 +32,15 @@ jobs:
 
       - name: ESLint
         run: npm run lint:eslint
+        shell: bash
+
       - name: Prettier
         run: npm run lint:prettier
+        shell: bash
+
       - name: SCSS Lint
         run: npm run lint:scss
+        shell: bash
 
   test:
     runs-on: ubuntu-latest
@@ -47,6 +53,7 @@ jobs:
 
       - name: Unit Tests
         run: npm run test
+        shell: bash
 
   e2e-test:
     runs-on: ubuntu-latest
@@ -59,6 +66,7 @@ jobs:
 
       - name: E2E Tests
         run: echo Run e2e tests
+        shell: bash
 
   publish:
     runs-on: ubuntu-latest
@@ -70,3 +78,4 @@ jobs:
     steps:
       - name: Deploy to given platform
         run: echo Deploy to given platform
+        shell: bash

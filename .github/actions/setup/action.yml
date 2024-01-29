@@ -20,6 +20,8 @@ runs:
         node-version: ${{ inputs.node_version }}
     - name: install npm
       run: npm install -g npm@${{ inputs.npm_version }}
+      shell: bash
 
     - name: Install Dependencies
       run: npm ci --no-progress
+      shell: bash
