@@ -1,5 +1,4 @@
 name: CI
-description: 'CI Build Pipeline'
 
 on:
   workflow_dispatch:
