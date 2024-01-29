@@ -1,0 +1,69 @@
+name: CI
+description: 'CI Build Pipeline'
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [$default-branch]
+  pull_request:
+    branches: [$default-branch]
+
+env:
+  # environment vars
+  DIST_ARTIFACT: dist
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup
+        uses: ./.github/actions/setup
+      - name: Build
+        run: npm run build
+
+  lint:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - name: Setup
+        uses: ./.github/actions/setup
+      - name: ESLint
+        run: npm run lint:eslint
+      - name: Prettier
+        run: npm run lint:prettier
+      - name: SCSS Lint
+        run: npm run lint:scss
+
+  test:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+      - lint
+    steps:
+      - name: Setup
+        uses: ./.github/actions/setup
+      - name: Unit Tests
+        run: npm run test
+
+  e2e-test:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+      - lint
+    steps:
+      - name: Setup
+        uses: ./.github/actions/setup
+      - name: E2E Tests
+        run: echo Run e2e tests
+
+  publish:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+      - lint
+      - test
+      - e2e-test
+    steps:
+      - name: Deploy to given platform
+        run: echo Deploy to given platform
