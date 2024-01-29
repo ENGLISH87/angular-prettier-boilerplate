@@ -1,0 +1,27 @@
+name: 'Setup'
+description: 'Setup Build Environment'
+
+inputs:
+  node_version:
+    required: false
+    default: v18.13.0
+    description: 'node version to use'
+  npm_version:
+    required: false
+    default: 8.19.3
+    description: 'NPM version to use'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: checkout codebase
+    - uses: actions/checkout@v2
+
+    - name: install node
+    - uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node_version }}
+    - run: npm install -g npm@${{ inputs.npm_version }}
+
+    - name: install dependencies
+    - run: npm ci --no-progress
