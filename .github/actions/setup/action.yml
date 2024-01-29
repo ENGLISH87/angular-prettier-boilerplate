@@ -14,15 +14,15 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: checkout codebase
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v3
 
-    - name: install node
-    - uses: actions/setup-node@v3
+    - name: Install Node
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ inputs.node_version }}
+    - name: install npm
+      run: npm install -g npm@${{ inputs.npm_version }}
 
-    - run: npm install -g npm@${{ inputs.npm_version }}
-
-    - name: install dependencies
-    - run: npm ci --no-progress
+    - name: Install Dependencies
+      run: npm ci --no-progress
