@@ -45,6 +45,10 @@ jobs:
       - build
       - lint
 
+    steps:
+      - id: setup
+      - uses: ./.github/actions/setup
+
       - name: unit tests
       - run: npm run test
 
@@ -54,9 +58,11 @@ jobs:
       - build
       - lint
     steps:
+      - id: setup
       - uses: ./.github/actions/setup
 
-      - name: echo Run e2e tests
+      - name: e2e tests
+      - run: echo Run e2e tests
 
   publish:
     runs-on: ubuntu-latest
