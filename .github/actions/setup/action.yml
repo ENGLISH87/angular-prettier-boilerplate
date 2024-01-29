@@ -21,6 +21,7 @@ runs:
     - uses: actions/setup-node@v3
       with:
         node-version: ${{ inputs.node_version }}
+
     - run: npm install -g npm@${{ inputs.npm_version }}
 
     - name: install dependencies

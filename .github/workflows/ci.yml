@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: setup
-      - uses: ./.github/actions/setup
+      - uses: ./actions/setup
 
       - name: build
         run: npm run build
@@ -28,7 +28,7 @@ jobs:
       - build
     steps:
       - id: setup
-      - uses: ./.github/actions/setup
+      - uses: ./actions/setup
 
       - name: lint:eslint
       - run: npm run lint:eslint
@@ -47,7 +47,7 @@ jobs:
 
     steps:
       - id: setup
-      - uses: ./.github/actions/setup
+      - uses: ./actions/setup
 
       - name: unit tests
       - run: npm run test
@@ -59,7 +59,7 @@ jobs:
       - lint
     steps:
       - id: setup
-      - uses: ./.github/actions/setup
+      - uses: ./actions/setup
 
       - name: e2e tests
       - run: echo Run e2e tests
