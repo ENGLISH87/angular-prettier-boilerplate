@@ -25,14 +25,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # setup node
-      - name: Setup Node
+      # npm install
+      - name: Install Dependencies
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
-
-      # npm install
-      - name: Install Dependencies
         run: npm install
 
       # build app
